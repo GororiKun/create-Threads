@@ -1,0 +1,245 @@
+{
+  "name": "Threads投稿実行ワークフロー",
+  "nodes": [
+    {
+      "id": "node-trigger",
+      "name": "定時トリガー（7時/12時/21時 JST）",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [100, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 22,3,12 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node-get-approved",
+      "name": "承認済み投稿を取得",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [320, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/GororiKun/create-Threads/contents/_shared/approved_posts.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "id": "node-find-due",
+      "name": "本時刻の投稿を絞り込む",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [540, 300],
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst currentUTCHour = now.getUTCHours();\nconst todayUTC = now.toISOString().split('T')[0];\n\n// GitHubファイルをbase64デコード\nlet fileData;\ntry {\n  const raw = $input.first().json.content.replace(/\\n/g, '');\n  fileData = JSON.parse(Buffer.from(raw, 'base64').toString('utf-8'));\n} catch(e) {\n  return [{ json: { _skip: true, reason: 'parse_error: ' + e.message } }];\n}\n\nif (!fileData.posts || fileData.posts.length === 0) {\n  return [{ json: { _skip: true, reason: 'no_posts_in_file' } }];\n}\n\n// この時間帯（UTC）に投稿予定のものを絞り込む\nconst duePosts = fileData.posts.filter(post => {\n  if (post.status === 'posted') return false;\n  const t = new Date(post.scheduled_for);\n  return t.toISOString().split('T')[0] === todayUTC &&\n         t.getUTCHours() === currentUTCHour;\n});\n\nif (duePosts.length === 0) {\n  return [{ json: { _skip: true, reason: 'no_posts_due_at_this_hour' } }];\n}\n\nreturn duePosts.map(post => ({ json: post }));"
+      }
+    },
+    {
+      "id": "node-if-skip",
+      "name": "投稿対象あり？",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [760, 300],
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "cond-skip",
+              "leftValue": "={{ $json._skip }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "notEquals" }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "node-create-container",
+      "name": "Threadsコンテナ作成",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [980, 200],
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.threads.net/v1.0/me/threads",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "media_type", "value": "TEXT" },
+            {
+              "name": "text",
+              "value": "={{ $json.body_a || $json.body }}{{ $json.hashtags_a && $json.hashtags_a.length > 0 ? '\\n\\n' + $json.hashtags_a.join(' ') : ($json.hashtags && $json.hashtags.length > 0 ? '\\n\\n' + $json.hashtags.join(' ') : '') }}"
+            }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "threads-cred",
+          "name": "Threads Access Token"
+        }
+      }
+    },
+    {
+      "id": "node-wait",
+      "name": "30秒待機（コンテナ生成待ち）",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1200, 200],
+      "parameters": {
+        "unit": "seconds",
+        "amount": 30
+      }
+    },
+    {
+      "id": "node-publish",
+      "name": "Threads投稿公開",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1420, 200],
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.threads.net/v1.0/me/threads_publish",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "creation_id", "value": "={{ $json.id }}" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "threads-cred",
+          "name": "Threads Access Token"
+        }
+      }
+    },
+    {
+      "id": "node-get-log",
+      "name": "post_log取得",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1640, 200],
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/GororiKun/create-Threads/contents/_shared/post_log.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "id": "node-merge-log",
+      "name": "ログ更新・base64エンコード",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1860, 200],
+      "parameters": {
+        "jsCode": "const publishedId = $('Threads投稿公開').first().json.id;\nconst originalPost = $('本時刻の投稿を絞り込む').first().json;\nconst logFile = $('post_log取得').first().json;\n\n// 既存ログをデコード\nlet log = { posts: [] };\ntry {\n  const raw = logFile.content.replace(/\\n/g, '');\n  log = JSON.parse(Buffer.from(raw, 'base64').toString('utf-8'));\n} catch(e) {}\n\n// 新エントリ追加\nconst postNo = originalPost.post_no || `No.${String(log.posts.length + 1).padStart(3, '0')}`;\nlog.posts.push({\n  post_no: postNo,\n  posted_at: new Date().toISOString(),\n  threads_id: publishedId,\n  url: `https://www.threads.net/post/${publishedId}`,\n  body: originalPost.body_a || originalPost.body || '',\n  hashtags: originalPost.hashtags_a || originalPost.hashtags || [],\n  pattern: originalPost.pattern || '',\n  status: 'posted'\n});\n\nconst encoded = Buffer.from(JSON.stringify(log, null, 2)).toString('base64');\n\nreturn [{\n  json: {\n    message: `投稿ログ更新: ${postNo} posted at ${new Date().toISOString()}`,\n    content: encoded,\n    sha: logFile.sha\n  }\n}];"
+      }
+    },
+    {
+      "id": "node-push-log",
+      "name": "GitHubにpost_logを保存",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [2080, 200],
+      "parameters": {
+        "method": "PUT",
+        "url": "https://api.github.com/repos/GororiKun/create-Threads/contents/_shared/post_log.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ message: $json.message, content: $json.content, sha: $json.sha }) }}"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "定時トリガー（7時/12時/21時 JST）": {
+      "main": [[{ "node": "承認済み投稿を取得", "type": "main", "index": 0 }]]
+    },
+    "承認済み投稿を取得": {
+      "main": [[{ "node": "本時刻の投稿を絞り込む", "type": "main", "index": 0 }]]
+    },
+    "本時刻の投稿を絞り込む": {
+      "main": [[{ "node": "投稿対象あり？", "type": "main", "index": 0 }]]
+    },
+    "投稿対象あり？": {
+      "main": [
+        [{ "node": "Threadsコンテナ作成", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Threadsコンテナ作成": {
+      "main": [[{ "node": "30秒待機（コンテナ生成待ち）", "type": "main", "index": 0 }]]
+    },
+    "30秒待機（コンテナ生成待ち）": {
+      "main": [[{ "node": "Threads投稿公開", "type": "main", "index": 0 }]]
+    },
+    "Threads投稿公開": {
+      "main": [[{ "node": "post_log取得", "type": "main", "index": 0 }]]
+    },
+    "post_log取得": {
+      "main": [[{ "node": "ログ更新・base64エンコード", "type": "main", "index": 0 }]]
+    },
+    "ログ更新・base64エンコード": {
+      "main": [[{ "node": "GitHubにpost_logを保存", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

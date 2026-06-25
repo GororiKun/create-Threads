@@ -1,0 +1,211 @@
+{
+  "name": "Threadsデータ収集ワークフロー",
+  "nodes": [
+    {
+      "id": "node-trigger",
+      "name": "定時トリガー（毎日12時 JST）",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [100, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 3 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node-get-log",
+      "name": "post_log取得",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [320, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/GororiKun/create-Threads/contents/_shared/post_log.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "id": "node-filter-posts",
+      "name": "計測対象の投稿を抽出",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [540, 300],
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// post_log.jsonをデコード\nlet log = { posts: [] };\ntry {\n  const raw = $input.first().json.content.replace(/\\n/g, '');\n  log = JSON.parse(Buffer.from(raw, 'base64').toString('utf-8'));\n} catch(e) {\n  return [{ json: { _skip: true, reason: 'parse_error' } }];\n}\n\nif (!log.posts || log.posts.length === 0) {\n  return [{ json: { _skip: true, reason: 'no_posts' } }];\n}\n\n// 過去7日以内の投稿でmetricsが必要なものを抽出\nconst targets = log.posts.filter(post => {\n  if (!post.threads_id) return false;\n  const postedAt = new Date(post.posted_at);\n  const hoursSince = (now - postedAt) / (1000 * 60 * 60);\n  return hoursSince >= 1 && hoursSince <= 168; // 1時間〜7日以内\n}).map(post => {\n  const postedAt = new Date(post.posted_at);\n  const hoursSince = Math.floor((now - postedAt) / (1000 * 60 * 60));\n  let timing = 'ongoing';\n  if (hoursSince >= 168) timing = '7day';\n  else if (hoursSince >= 72) timing = '72h';\n  else if (hoursSince >= 24) timing = '24h';\n  else timing = '1h';\n  return { ...post, collection_timing: timing };\n});\n\nif (targets.length === 0) {\n  return [{ json: { _skip: true, reason: 'no_posts_in_range' } }];\n}\n\nreturn targets.map(p => ({ json: p }));"
+      }
+    },
+    {
+      "id": "node-if-skip",
+      "name": "計測対象あり？",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [760, 300],
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "cond-skip",
+              "leftValue": "={{ $json._skip }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "notEquals" }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "node-get-metrics",
+      "name": "Threadsインサイト取得",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [980, 200],
+      "parameters": {
+        "method": "GET",
+        "url": "=https://graph.threads.net/v1.0/{{ $json.threads_id }}/insights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "metric", "value": "views,likes,replies,reposts,quotes" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "threads-cred",
+          "name": "Threads Access Token"
+        }
+      }
+    },
+    {
+      "id": "node-aggregate",
+      "name": "メトリクス集計",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1200, 200],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// 全投稿のメトリクス結果を集計する\nconst results = $input.all();\nconst records = results.map(item => {\n  const metrics = {};\n  const dataArr = item.json.data || [];\n  dataArr.forEach(m => {\n    metrics[m.name] = m.values ? m.values[0]?.value : m.total_value?.value || 0;\n  });\n  return {\n    post_no: item.json._post_no || '',\n    threads_id: item.json._threads_id || '',\n    collection_timing: item.json._timing || '',\n    collected_at: new Date().toISOString(),\n    views: metrics.views || 0,\n    likes: metrics.likes || 0,\n    replies: metrics.replies || 0,\n    reposts: metrics.reposts || 0,\n    quotes: metrics.quotes || 0\n  };\n});\n\nreturn [{ json: { records } }];"
+      }
+    },
+    {
+      "id": "node-get-metrics-file",
+      "name": "daily_metrics取得",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1420, 200],
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/GororiKun/create-Threads/contents/_shared/daily_metrics.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "id": "node-merge-metrics",
+      "name": "メトリクスをマージ・エンコード",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1640, 200],
+      "parameters": {
+        "jsCode": "const newRecords = $('メトリクス集計').first().json.records || [];\nconst metricsFile = $('daily_metrics取得').first().json;\n\n// 既存ファイルをデコード\nlet metrics = { collected_by: 'データ回収部門', records: [], account: {} };\ntry {\n  const raw = metricsFile.content.replace(/\\n/g, '');\n  metrics = JSON.parse(Buffer.from(raw, 'base64').toString('utf-8'));\n} catch(e) {}\n\n// 今日の日付\nconst today = new Date().toISOString().split('T')[0];\n\n// 新しいレコードを追加（重複チェック：同じpost_no + timing は上書き）\nnewRecords.forEach(rec => {\n  const key = `${rec.post_no}_${rec.collection_timing}`;\n  const idx = metrics.records.findIndex(\n    r => r.post_no === rec.post_no && r.collection_timing === rec.collection_timing\n  );\n  if (idx >= 0) {\n    metrics.records[idx] = rec; // 上書き\n  } else {\n    metrics.records.push(rec);\n  }\n});\n\nmetrics.collected_at = new Date().toISOString();\nmetrics.status = 'completed';\n\nconst encoded = Buffer.from(JSON.stringify(metrics, null, 2)).toString('base64');\n\nreturn [{\n  json: {\n    message: `データ収集: ${today} (${newRecords.length}件)`,\n    content: encoded,\n    sha: metricsFile.sha\n  }\n}];"
+      }
+    },
+    {
+      "id": "node-push-metrics",
+      "name": "GitHubにdaily_metricsを保存",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1860, 200],
+      "parameters": {
+        "method": "PUT",
+        "url": "https://api.github.com/repos/GororiKun/create-Threads/contents/_shared/daily_metrics.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ message: $json.message, content: $json.content, sha: $json.sha }) }}"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "定時トリガー（毎日12時 JST）": {
+      "main": [[{ "node": "post_log取得", "type": "main", "index": 0 }]]
+    },
+    "post_log取得": {
+      "main": [[{ "node": "計測対象の投稿を抽出", "type": "main", "index": 0 }]]
+    },
+    "計測対象の投稿を抽出": {
+      "main": [[{ "node": "計測対象あり？", "type": "main", "index": 0 }]]
+    },
+    "計測対象あり？": {
+      "main": [
+        [{ "node": "Threadsインサイト取得", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Threadsインサイト取得": {
+      "main": [[{ "node": "メトリクス集計", "type": "main", "index": 0 }]]
+    },
+    "メトリクス集計": {
+      "main": [[{ "node": "daily_metrics取得", "type": "main", "index": 0 }]]
+    },
+    "daily_metrics取得": {
+      "main": [[{ "node": "メトリクスをマージ・エンコード", "type": "main", "index": 0 }]]
+    },
+    "メトリクスをマージ・エンコード": {
+      "main": [[{ "node": "GitHubにdaily_metricsを保存", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
