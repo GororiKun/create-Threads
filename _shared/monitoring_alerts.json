@@ -1,0 +1,11 @@
+{
+  "alerts": [],
+  "last_checked": "",
+  "system_status": {
+    "research": "ok",
+    "writing": "ok",
+    "posting": "ok",
+    "data_collection": "ok",
+    "analysis": "ok"
+  }
+}

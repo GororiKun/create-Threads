@@ -1,0 +1,20 @@
+{
+  "last_updated": "",
+  "current_phase": "idle",
+  "phases": {
+    "research": "waiting",
+    "theme_decision": "waiting",
+    "writing": "waiting",
+    "approval": "waiting",
+    "posting": "waiting",
+    "data_collection": "waiting",
+    "analysis": "waiting"
+  },
+  "current_cycle": {
+    "started_at": "",
+    "posts_planned": 0,
+    "posts_completed": 0,
+    "week": ""
+  },
+  "alerts": []
+}

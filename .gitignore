@@ -1,0 +1,10 @@
+# MacOS
+.DS_Store
+
+# 一時ファイル
+*.tmp
+*.log
+
+# 機密情報（APIキー等は絶対にコミットしない）
+.env
+*.secret
