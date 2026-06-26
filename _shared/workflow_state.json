@@ -1,20 +1,29 @@
 {
-  "last_updated": "",
-  "current_phase": "idle",
+  "last_updated": "2026-06-26T11:30:00Z",
+  "current_phase": "posting_scheduled",
   "phases": {
-    "research": "waiting",
-    "theme_decision": "waiting",
-    "writing": "waiting",
-    "approval": "waiting",
-    "posting": "waiting",
+    "research": "completed",
+    "theme_decision": "completed",
+    "writing": "completed",
+    "approval": "completed",
+    "posting": "scheduled",
     "data_collection": "waiting",
     "analysis": "waiting"
   },
   "current_cycle": {
-    "started_at": "",
-    "posts_planned": 0,
+    "started_at": "2026-06-26T08:00:00Z",
+    "posts_planned": 7,
     "posts_completed": 0,
-    "week": ""
+    "week": "2026-W26"
   },
+  "schedule_summary": [
+    { "post_no": "No.001", "scheduled_for": "2026-06-26T22:00:00Z", "jst": "2026-06-27 07:00" },
+    { "post_no": "No.002", "scheduled_for": "2026-06-28T03:00:00Z", "jst": "2026-06-28 12:00" },
+    { "post_no": "No.003", "scheduled_for": "2026-06-29T12:00:00Z", "jst": "2026-06-29 21:00" },
+    { "post_no": "No.004", "scheduled_for": "2026-06-29T22:00:00Z", "jst": "2026-06-30 07:00" },
+    { "post_no": "No.005", "scheduled_for": "2026-07-01T03:00:00Z", "jst": "2026-07-01 12:00" },
+    { "post_no": "No.006", "scheduled_for": "2026-07-02T12:00:00Z", "jst": "2026-07-02 21:00" },
+    { "post_no": "No.007", "scheduled_for": "2026-07-02T22:00:00Z", "jst": "2026-07-03 07:00" }
+  ],
   "alerts": []
 }
