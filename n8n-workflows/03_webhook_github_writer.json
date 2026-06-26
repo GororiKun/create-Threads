@@ -11,18 +11,25 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "threads-github-writer",
-        "responseMode": "onReceived",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
         "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "webhook-secret-cred",
+          "name": "Webhook Secret"
+        }
       }
     },
     {
       "id": "node-parse",
-      "name": "リクエストを解析",
+      "name": "リクエストを検証・解析",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [320, 300],
       "parameters": {
-        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst filePath = body.file_path;\nconst content = typeof body.content === 'string'\n  ? body.content\n  : JSON.stringify(body.content, null, 2);\nconst message = body.message || `自動更新: ${filePath} at ${new Date().toISOString()}`;\n\nif (!filePath) throw new Error('file_path が指定されていません');\nif (!content) throw new Error('content が空です');\n\nreturn [{ json: { file_path: filePath, content_raw: content, message } }];"
+        "jsCode": "// ── パス検証：許可リスト以外は全拒否 ──────────────────\nconst ALLOWED_PATHS = [\n  '_shared/workflow_state.json',\n  '_shared/research_briefing.json',\n  '_shared/research_output.json',\n  '_shared/writing_brief.json',\n  '_shared/post_drafts.json',\n  '_shared/approved_posts.json',\n  '_shared/post_log.json',\n  '_shared/daily_metrics.json',\n  '_shared/analysis_report.json',\n  '_shared/monitoring_alerts.json'\n];\n\nconst body = $input.first().json.body || $input.first().json;\nconst filePath = (body.file_path || '').trim();\n\n// パストラバーサル・不正パスを拒否\nif (\n  !filePath ||\n  filePath.includes('..') ||\n  filePath.includes('//') ||\n  filePath.startsWith('/') ||\n  filePath.startsWith('.github') ||\n  !ALLOWED_PATHS.includes(filePath)\n) {\n  throw new Error(`不正なfile_path: \"${filePath}\"`);\n}\n\nconst content = typeof body.content === 'string'\n  ? body.content\n  : JSON.stringify(body.content, null, 2);\n\nif (!content || content.length === 0) {\n  throw new Error('content が空です');\n}\n\nconst message = body.message || `自動更新: ${filePath} at ${new Date().toISOString()}`;\n\nreturn [{ json: { file_path: filePath, content_raw: content, message } }];"
       }
     },
     {
@@ -57,7 +64,7 @@
       "typeVersion": 2,
       "position": [760, 300],
       "parameters": {
-        "jsCode": "const parseNode = $('リクエストを解析').first().json;\nconst shaNode = $input.first().json;\n\nconst encoded = Buffer.from(parseNode.content_raw).toString('base64');\n\nreturn [{\n  json: {\n    file_path: parseNode.file_path,\n    message: parseNode.message,\n    content: encoded,\n    sha: shaNode.sha\n  }\n}];"
+        "jsCode": "const parseNode = $('リクエストを検証・解析').first().json;\nconst shaNode = $input.first().json;\n\nconst encoded = Buffer.from(parseNode.content_raw).toString('base64');\n\nreturn [{\n  json: {\n    file_path: parseNode.file_path,\n    message: parseNode.message,\n    content: encoded,\n    sha: shaNode.sha\n  }\n}];"
       }
     },
     {
@@ -104,9 +111,9 @@
   ],
   "connections": {
     "Webhookトリガー": {
-      "main": [[{ "node": "リクエストを解析", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "リクエストを検証・解析", "type": "main", "index": 0 }]]
     },
-    "リクエストを解析": {
+    "リクエストを検証・解析": {
       "main": [[{ "node": "現在のSHAを取得", "type": "main", "index": 0 }]]
     },
     "現在のSHAを取得": {
