@@ -1,0 +1,125 @@
+{
+  "name": "GitHub書き込みWebhook（エージェント連携）",
+  "nodes": [
+    {
+      "id": "node-webhook",
+      "name": "Webhookトリガー",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [100, 300],
+      "webhookId": "threads-github-writer",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "threads-github-writer",
+        "responseMode": "onReceived",
+        "options": {}
+      }
+    },
+    {
+      "id": "node-parse",
+      "name": "リクエストを解析",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [320, 300],
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst filePath = body.file_path;\nconst content = typeof body.content === 'string'\n  ? body.content\n  : JSON.stringify(body.content, null, 2);\nconst message = body.message || `自動更新: ${filePath} at ${new Date().toISOString()}`;\n\nif (!filePath) throw new Error('file_path が指定されていません');\nif (!content) throw new Error('content が空です');\n\nreturn [{ json: { file_path: filePath, content_raw: content, message } }];"
+      }
+    },
+    {
+      "id": "node-get-sha",
+      "name": "現在のSHAを取得",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [540, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.github.com/repos/GororiKun/create-Threads/contents/{{ $json.file_path }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" }
+          ]
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "id": "node-encode",
+      "name": "base64エンコードして書き込み準備",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 300],
+      "parameters": {
+        "jsCode": "const parseNode = $('リクエストを解析').first().json;\nconst shaNode = $input.first().json;\n\nconst encoded = Buffer.from(parseNode.content_raw).toString('base64');\n\nreturn [{\n  json: {\n    file_path: parseNode.file_path,\n    message: parseNode.message,\n    content: encoded,\n    sha: shaNode.sha\n  }\n}];"
+      }
+    },
+    {
+      "id": "node-write",
+      "name": "GitHubにファイルを書き込む",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [980, 300],
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/GororiKun/create-Threads/contents/{{ $json.file_path }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github.v3+json" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ message: $json.message, content: $json.content, sha: $json.sha }) }}"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "id": "node-response",
+      "name": "成功レスポンス",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1200, 300],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', file: $('base64エンコードして書き込み準備').first().json.file_path, committed_at: new Date().toISOString() }) }}"
+      }
+    }
+  ],
+  "connections": {
+    "Webhookトリガー": {
+      "main": [[{ "node": "リクエストを解析", "type": "main", "index": 0 }]]
+    },
+    "リクエストを解析": {
+      "main": [[{ "node": "現在のSHAを取得", "type": "main", "index": 0 }]]
+    },
+    "現在のSHAを取得": {
+      "main": [[{ "node": "base64エンコードして書き込み準備", "type": "main", "index": 0 }]]
+    },
+    "base64エンコードして書き込み準備": {
+      "main": [[{ "node": "GitHubにファイルを書き込む", "type": "main", "index": 0 }]]
+    },
+    "GitHubにファイルを書き込む": {
+      "main": [[{ "node": "成功レスポンス", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
