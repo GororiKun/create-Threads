@@ -1,130 +1,138 @@
 {
   "submitted_by": "リサーチ部門",
-  "submitted_at": "2026-06-26T09:00:00Z",
+  "submitted_at": "2026-06-28T00:30:00Z",
+  "week": "2026-W27",
+  "target_market": "English-speaking (US, UK, Australia, Canada)",
   "trends": [
     {
-      "keyword": "AI副業",
-      "source": "Threads・X トレンド観察",
-      "observed_at": "2026-06-26",
-      "note": "ChatGPT・Claude等のAI活用で副収入を得る投稿が高エンゲージメント。具体的な金額（月3万・5万）を示す投稿が特に反応あり。"
+      "keyword": "AI side hustle",
+      "source": "Threads/X English-language trend observation, Reddit r/sidehustle",
+      "observed_at": "2026-06-28",
+      "note": "Posts about earning $500-$2000/month using AI tools (ChatGPT, Midjourney, Canva AI) are getting massive engagement. Specific income numbers and 'how I did it' stories outperform generic advice. US and UK audiences respond strongly to actionable step-by-step breakdowns."
     },
     {
-      "keyword": "朝活・朝のルーティン",
-      "source": "Threads投稿観察",
-      "observed_at": "2026-06-26",
-      "note": "生産性・習慣化系の投稿は朝7時台の投稿が最もインプレッションが高い。体験談型＋具体的な手順が刺さる傾向。"
+      "keyword": "ChatGPT prompts for work",
+      "source": "Threads English community observation, Reddit r/ChatGPT",
+      "observed_at": "2026-06-28",
+      "note": "'Prompts that save me hours every week' style posts are getting high saves and shares. Audiences love specific, copy-paste-ready prompts. 'I use these 5 prompts every morning' format resonates strongly."
     },
     {
-      "keyword": "ChatGPT活用法",
-      "source": "Threads・YouTube・note",
-      "observed_at": "2026-06-26",
-      "note": "「知らなかった使い方」「これだけ変わった」系の具体的活用事例が伸びている。抽象論より具体例重視。"
+      "keyword": "morning routine productivity",
+      "source": "Threads/Instagram English creators, YouTube trending",
+      "observed_at": "2026-06-28",
+      "note": "Morning routine content is evergreen but 'quiet morning' and '5AM club' aesthetics are peaking. Posts pairing morning habits with income/career results drive saves. Specificity wins ('I woke up at 5AM for 30 days, here is what happened')."
     },
     {
-      "keyword": "フリーランス収入",
-      "source": "Threads投稿観察",
-      "observed_at": "2026-06-26",
-      "note": "「単価を上げる方法」「月収X万達成した方法」系が反応が高い。失敗談→解決策の構成が特に効果的。"
+      "keyword": "passive income 2026",
+      "source": "Threads English accounts, Reddit r/passive_income",
+      "observed_at": "2026-06-28",
+      "note": "Passive income content remains top-performing. 'Digital products', 'AI-generated content', and 'print-on-demand' are trending angles. Realistic income claims ($100-$1000/month) outperform exaggerated claims in engagement quality."
     },
     {
-      "keyword": "積立NISA・投資初心者",
-      "source": "Threads・Instagram観察",
-      "observed_at": "2026-06-26",
-      "note": "2024年新NISA以来継続して高い関心。「怖くない」「月1万から」という敷居を下げる切り口が刺さる。"
+      "keyword": "financial freedom for millennials",
+      "source": "Threads US/UK creators, TikTok finance community crossover",
+      "observed_at": "2026-06-28",
+      "note": "'I invested $X a month starting at 25 and here is where I am now' narrative posts drive massive saves. Index funds, ETFs, and beginner investing framed as 'not complicated' outperforms complex investment advice. Fear-of-missing-out on compound interest resonates."
     },
     {
-      "keyword": "SNS発信戦略",
-      "source": "Threads投稿観察",
-      "observed_at": "2026-06-26",
-      "note": "「フォロワーが増えない理由」「発信で稼ぐ仕組み」系が伸びている。失敗あるある→正しいやり方の構成が有効。"
+      "keyword": "freelance rate increase",
+      "source": "LinkedIn trending, Reddit r/freelance, Threads observation",
+      "observed_at": "2026-06-28",
+      "note": "'How I doubled my freelance rate in 6 months' type content is trending. Pain points: undercharging, scope creep, difficult clients. Solutions: niching down, portfolio positioning, AI-assisted workflows."
+    },
+    {
+      "keyword": "content creator income breakdown",
+      "source": "Threads/YouTube English creators",
+      "observed_at": "2026-06-28",
+      "note": "Transparent income breakdowns from creators build trust and get shares. 'How I made $X from Threads in one month' format works well even for smaller numbers. Community wants to see it is achievable, not just aspirational."
     }
   ],
   "competitor_insights": [
     {
-      "account": "AI活用・副業系アカウント群",
-      "pattern": "「〇〇だけで月X万」「AIで仕事が変わった実話」など具体的成果を示すフック。リスト形式（①②③）で情報整理。最後に行動を促すCTA。",
-      "engagement": "いいね200〜500、コメント20〜50が伸びている投稿の目安"
+      "account": "English AI productivity accounts (Threads US/UK)",
+      "pattern": "Hook with specific number or surprising claim. Body: numbered list of 3-5 actionable tips with emojis. Close: soft CTA ('save this', 'try this today'). Hashtags: 5-6 targeted. Tone: conversational, peer-to-peer, not guru-like.",
+      "engagement": "Posts with specific numbers in hook get 3x more engagement than generic advice posts. Save rate highest on list posts with tools/resources."
     },
     {
-      "account": "ライフハック系アカウント群",
-      "pattern": "「〇〇する人の共通点」「知らないと損する〇〇」という好奇心を刺激するフック。箇条書き＋絵文字で読みやすさ重視。",
-      "engagement": "保存・シェアが多い。役立つ情報リストが強い"
+      "account": "Personal finance creators (US/UK market)",
+      "pattern": "Relatable pain point opening ('I used to live paycheck to paycheck'). Then pivot to solution. Specific, simple steps. End with 'you can do this too' empowerment. Avoid complex jargon.",
+      "engagement": "Save-heavy content. Share rate high when content makes audience feel smart for knowing it."
     },
     {
-      "account": "お金・資産形成系アカウント",
-      "pattern": "「月1万円を〇年続けると？」「年収が低くても資産を作れる理由」など数字とギャップを使ったフック。初心者向けに噛み砕いた解説。",
-      "engagement": "フォロワー少なくても保存数が高い傾向"
+      "account": "Freelance/remote work accounts",
+      "pattern": "Mistake-confession hooks ('The mistake that cost me my biggest client'). Story-driven posts outperform listicles. Vulnerability + lesson = high comment rate. End with question to drive discussion.",
+      "engagement": "Comment engagement highest on mistake/lesson posts. Saves highest on tool/resource lists."
     }
   ],
   "hook_patterns": [
     {
-      "type": "問いかけ型",
-      "example": "「ChatGPT、使ってる？使ってない？」でこれだけ差がつく話をします。",
-      "reason": "読者に自分ごととして考えさせる。「自分は使ってるかな？」と立ち止まらせる効果がある。"
+      "type": "Question hook",
+      "example": "Are you using ChatGPT to make money yet? If not, you are leaving thousands on the table.",
+      "reason": "Makes audience self-evaluate. Creates urgency around missing out. Works well for AI and income topics."
     },
     {
-      "type": "断言型",
-      "example": "AIを使わない副業は、今すぐやめた方がいい。",
-      "reason": "強い意見・主張が目を引く。賛否問わず感情を動かすためコメントが集まりやすい。"
+      "type": "Bold statement hook",
+      "example": "Stop trading time for money. There is a smarter way.",
+      "reason": "Strong opinion stops scroll. Polarizing but not offensive. Invites agreement or curiosity."
     },
     {
-      "type": "数字型",
-      "example": "毎月1万円を10年間投資するだけで、いくらになるか知っていますか？",
-      "reason": "具体的な数字がスクロールを止める。「気になる」という好奇心を刺激する。"
+      "type": "Specific number hook",
+      "example": "I made $847 last month using just 3 ChatGPT prompts. Here is exactly how.",
+      "reason": "Specific numbers are credible and intriguing. 'Here is exactly how' promises full value delivery."
     },
     {
-      "type": "共感型（あるある）",
-      "example": "「やるべきことが多すぎて何も終わらない」",
-      "reason": "ターゲットの悩みをそのまま言語化することで「これ私のこと」と思わせる。"
+      "type": "Empathy/pain hook",
+      "example": "You are not lazy. You are just doing the wrong things in the wrong order.",
+      "reason": "Validates the audience's struggle. Reframes the problem. Highly shareable because people tag others."
     },
     {
-      "type": "意外性・ギャップ型",
-      "example": "「仕事ができる人の朝のルーティン」を調べたら共通点があった",
-      "reason": "「え、何が共通点なの？」と続きが気になる仕掛けになっている。"
+      "type": "Curiosity gap hook",
+      "example": "The one thing top earners do differently in the morning (it is not what you think).",
+      "reason": "Creates information gap that compels reading. The 'not what you think' twist builds anticipation."
     },
     {
-      "type": "体験談型",
-      "example": "「朝が変わると、人生が変わる」って言葉、信じてなかった。",
-      "reason": "自分の体験として語ることで信頼感・親近感が生まれる。リアリティが共感を生む。"
+      "type": "Story/experience hook",
+      "example": "A year ago I was burned out, underpaid, and had zero savings. Here is what changed everything.",
+      "reason": "Relatable transformation story. Past vs now contrast creates emotional engagement."
     }
   ],
   "recommended_themes": [
     {
-      "theme": "AI × 副業収入（ChatGPT活用で副業を加速する）",
-      "reason": "2026年時点で最も検索・閲覧数が高いテーマ。アフィリエイト導線（AIツール・副業スクール等）との相性が抜群。",
+      "theme": "AI Tools That Actually Make You Money (Specific Income Claims)",
+      "reason": "Top-performing content category in English-speaking Threads. Combines AI trend with income desire. High affiliate potential (AI tool subscriptions, courses).",
       "priority": 1
     },
     {
-      "theme": "生産性向上 × 朝活ルーティン",
-      "reason": "朝7時台投稿との相性が良く、保存・シェアされやすい実用コンテンツ。継続してフォロワーから需要がある。",
+      "theme": "5 ChatGPT Prompts That Save Hours Every Week",
+      "reason": "Specific, actionable, high save rate. Copy-paste value drives shares. Evergreen with weekly refresh potential.",
       "priority": 2
     },
     {
-      "theme": "ChatGPT × 仕事効率化（具体的活用法）",
-      "reason": "AI活用の具体的な使い方は「知らなかった」という驚きが得られるためシェア・保存が多い。",
+      "theme": "Morning Routine That Changed My Income (Habit + Result link)",
+      "reason": "Combines evergreen productivity content with aspirational income angle. 7AM posting time synergy. Saves and shares from goal-oriented audience.",
       "priority": 3
     },
     {
-      "theme": "フリーランス × 収入アップ戦略",
-      "reason": "副業・フリーランス志望者が増えており需要が高い。専門サービス・スクールへのアフィリエイト導線として有効。",
+      "theme": "Beginner Investing: Why $200/Month Is Enough to Build Wealth",
+      "reason": "Low barrier entry angle removes intimidation. High save rate from 25-35 age group. Long-term follower value. Finance affiliate potential.",
       "priority": 4
     },
     {
-      "theme": "時間管理 × ライフハック",
-      "reason": "忙しい社会人全般に刺さる普遍的テーマ。ツール紹介へのアフィリエイト導線を自然に組み込める。",
+      "theme": "How to Double Your Freelance Rate Without Losing Clients",
+      "reason": "High emotional stakes for freelancers. Practical advice format drives comments and saves. Skilled worker audience is engaged and conversion-ready.",
       "priority": 5
     },
     {
-      "theme": "お金の基礎 × 積立NISA入門",
-      "reason": "金融リテラシー系は保存率が高く、長期的なフォロワー獲得に有効。証券口座開設アフィリエイトとの親和性が高い。",
+      "theme": "Time Blocking: The System That Helped Me Do More in 4 Hours Than Most People Do in 8",
+      "reason": "Bold productivity claim hooks busy professionals. Specific system detail builds credibility. Tool recommendation potential (apps, planners).",
       "priority": 6
     },
     {
-      "theme": "SNS発信戦略 × Threadsフォロワー増加",
-      "reason": "Threadsユーザー自身が知りたい情報。発信支援サービス・教材へのアフィリエイト導線として機能する。",
+      "theme": "How to Grow on Threads in 2026 (Honest Creator Breakdown)",
+      "reason": "Meta content targeting Threads users directly. High relevance to existing audience. Creator-to-creator tone drives community feeling.",
       "priority": 7
     }
   ],
-  "notes": "初回サイクルのため前週比較データなし。今週の投稿結果が来週以降の改善基準になる。投稿時刻は朝7時・昼12時・夜21時（JST）を分散させること。アフィリエイト導線は投稿本文に直接記載せず、プロフィールリンクへ自然に誘導する構成を推奨。",
+  "notes": "Second cycle. Account is now fully English-language. All themes confirmed suitable for US/UK/AU/CA audience. AI + income content is the #1 performer across English Threads communities right now. Recommend prioritizing themes 1-3 for early-week posts when audience is most active (Monday-Wednesday). Finance and freelance themes work well mid-week. Growth/strategy posts for weekend when creators are reflecting.",
   "status": "completed"
 }

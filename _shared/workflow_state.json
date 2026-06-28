@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-26T11:30:00Z",
+  "last_updated": "2026-06-28T03:30:00Z",
   "current_phase": "posting_scheduled",
   "phases": {
     "research": "completed",
@@ -11,19 +11,19 @@
     "analysis": "waiting"
   },
   "current_cycle": {
-    "started_at": "2026-06-26T08:00:00Z",
+    "started_at": "2026-06-28T00:00:00Z",
     "posts_planned": 7,
     "posts_completed": 0,
-    "week": "2026-W26"
+    "week": "2026-W27"
   },
   "schedule_summary": [
-    { "post_no": "No.001", "scheduled_for": "2026-06-26T22:00:00Z", "jst": "2026-06-27 07:00" },
-    { "post_no": "No.002", "scheduled_for": "2026-06-28T03:00:00Z", "jst": "2026-06-28 12:00" },
-    { "post_no": "No.003", "scheduled_for": "2026-06-29T12:00:00Z", "jst": "2026-06-29 21:00" },
-    { "post_no": "No.004", "scheduled_for": "2026-06-29T22:00:00Z", "jst": "2026-06-30 07:00" },
-    { "post_no": "No.005", "scheduled_for": "2026-07-01T03:00:00Z", "jst": "2026-07-01 12:00" },
-    { "post_no": "No.006", "scheduled_for": "2026-07-02T12:00:00Z", "jst": "2026-07-02 21:00" },
-    { "post_no": "No.007", "scheduled_for": "2026-07-02T22:00:00Z", "jst": "2026-07-03 07:00" }
+    { "post_no": "W27-No.001", "scheduled_for": "2026-06-28T22:00:00Z", "jst": "2026-06-29 07:00", "theme": "AI Tools That Actually Make You Money" },
+    { "post_no": "W27-No.002", "scheduled_for": "2026-06-30T03:00:00Z", "jst": "2026-06-30 12:00", "theme": "5 ChatGPT Prompts That Save Hours Every Week" },
+    { "post_no": "W27-No.003", "scheduled_for": "2026-07-01T12:00:00Z", "jst": "2026-07-01 21:00", "theme": "Morning Routine That Changed My Income" },
+    { "post_no": "W27-No.004", "scheduled_for": "2026-07-01T22:00:00Z", "jst": "2026-07-02 07:00", "theme": "Beginner Investing: $200/Month Is Enough to Build Wealth" },
+    { "post_no": "W27-No.005", "scheduled_for": "2026-07-03T03:00:00Z", "jst": "2026-07-03 12:00", "theme": "How to Double Your Freelance Rate Without Losing Clients" },
+    { "post_no": "W27-No.006", "scheduled_for": "2026-07-04T12:00:00Z", "jst": "2026-07-04 21:00", "theme": "Time Blocking: Do More in 4 Hours Than Most Do in 8" },
+    { "post_no": "W27-No.007", "scheduled_for": "2026-07-04T22:00:00Z", "jst": "2026-07-05 07:00", "theme": "How to Grow on Threads in 2026 (Honest Creator Breakdown)" }
   ],
   "alerts": [],
   "policy_changes": [
@@ -35,12 +35,18 @@
         "秘書/CLAUDE.md",
         "リサーチ部門/CLAUDE.md",
         "データ回収部門/CLAUDE.md",
-        "ライティング部門/CLAUDE.md（確認のみ・更新済み）",
+        "ライティング部門/CLAUDE.md",
         "分析担当/CLAUDE.md",
         "投稿実行部門/CLAUDE.md",
         "監視、制御担当/CLAUDE.md"
       ],
       "instructed_by": "オーナー"
+    },
+    {
+      "changed_at": "2026-06-28",
+      "type": "weekly_cycle_start",
+      "description": "W27サイクル開始。英語圏向け投稿7本を計画・承認。スケジュールセット完了。",
+      "week": "2026-W27"
     }
   ]
 }

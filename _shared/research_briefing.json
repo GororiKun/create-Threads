@@ -1,28 +1,43 @@
 {
   "issued_by": "秘書",
-  "issued_at": "2026-06-26T08:00:00Z",
-  "targets": {
-    "competitors": [
-      "AIビジネス系Threadsアカウント全般",
-      "副業情報系アカウント",
-      "ライフハック系アカウント",
-      "フリーランス支援系アカウント"
-    ],
-    "keywords": [
-      "AI副業", "ChatGPT活用", "副業月5万", "在宅ワーク", "生産性向上",
-      "フリーランス", "時間管理", "朝活", "ライフハック", "スキルアップ",
-      "積立NISA", "お金の勉強", "SNS発信", "Threads"
-    ],
-    "themes": [
-      "AI活用・ChatGPT活用術",
-      "副業・在宅ワーク・収益化",
-      "生産性向上・タイムマネジメント",
-      "フリーランス・独立",
-      "お金・資産形成入門",
-      "SNS情報発信戦略"
-    ],
-    "notes": "初回サイクルのため前週データなし。2026年6月時点のThreadsトレンドとアフィリエイト導線として機能しやすいテーマを重視。バズる冒頭フックパターンを多く収集すること。"
-  },
-  "deadline": "2026-06-26T09:00:00Z",
+  "issued_at": "2026-06-28T00:00:00Z",
+  "week": "2026-W27",
+  "target_market": "English-speaking (US, UK, Australia, Canada)",
+  "language": "English",
+  "research_themes": [
+    "AI tools for making money online (side income, freelance, passive income)",
+    "Productivity hacks and morning routines for high performers",
+    "ChatGPT and AI automation for everyday tasks",
+    "Personal finance, investing basics, and wealth building for beginners",
+    "Freelance and remote work income growth strategies",
+    "Time management and deep work techniques",
+    "Social media growth and content creation strategies on Threads/Instagram"
+  ],
+  "competitor_accounts": [
+    "Top English-language productivity and AI accounts on Threads",
+    "Personal finance and side hustle creators (US/UK market)",
+    "ChatGPT tips and AI tools accounts with high engagement"
+  ],
+  "keywords_to_research": [
+    "AI side hustle",
+    "make money with ChatGPT",
+    "passive income 2026",
+    "morning routine productivity",
+    "freelance tips",
+    "financial freedom",
+    "time management hacks",
+    "content creator income",
+    "AI automation tools",
+    "invest money beginners"
+  ],
+  "special_notes": "Second cycle. Account has shifted to full English-language posting for global English-speaking audiences. Focus on trending hooks and viral post formats popular in US/UK Threads communities. Identify patterns that drive saves and shares among 25-40 year old English-speaking professionals interested in AI, productivity, and income growth.",
+  "improvement_from_last_week": [
+    "Test question-hook vs statement-hook formats",
+    "Opening line must include specific numbers, reader pain point, or bold claim",
+    "End posts with soft CTA",
+    "Use emojis strategically for visual list formatting",
+    "Limit hashtags to 5-7 focused tags"
+  ],
+  "deadline": "2026-06-28T02:00:00Z",
   "status": "in_progress"
 }

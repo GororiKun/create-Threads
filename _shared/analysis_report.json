@@ -1,49 +1,67 @@
 {
   "submitted_by": "分析担当",
-  "submitted_at": "2026-06-26",
-  "summary": "初回サイクル（前週データなし）。リサーチ部門の調査結果を基盤に、2026年6月時点のThreadsで反応が出やすいテーマと投稿パターンを推薦。今週の投稿結果が来週以降のPDCA基準となるため、7投稿全てをA/Bテスト形式（2案作成→1案選択）で行い、データ蓄積を優先する。",
+  "submitted_at": "2026-06-28",
+  "week": "2026-W27",
+  "summary": "W26 was the first English-language cycle. No engagement data available yet (posts scheduled but not yet published at analysis time). W27 recommendations are built on research trends and best-practice patterns from English-speaking Threads communities. Priority: deploy 7 posts across the week with A/B hook testing (question-hook vs statement-hook) to begin building baseline data for future cycles.",
   "top_posts": [],
   "low_posts": [],
   "win_patterns": {
     "hooks": [
-      "問いかけ型：「〜していますか？」「〜ってご存知ですか？」",
-      "断言型：「〜はやめた方がいい」「〜が全て変わった」",
-      "数字型：「月X万円」「1日〇分で」「3つだけ」",
-      "共感型：ターゲットの悩みをそのまま冒頭1行に"
+      "Specific number hook: 'I made $X using 3 ChatGPT prompts' — credible and intriguing",
+      "Question hook: 'Are you still doing X the hard way?' — invites self-reflection",
+      "Bold statement hook: 'Stop trading time for money. There is a smarter way.' — scroll-stopper",
+      "Empathy hook: 'You are not lazy. You are just doing the wrong things.' — validates and reframes",
+      "Curiosity gap: 'The one thing top earners do differently (it is not what you think)' — compels reading"
     ],
     "structures": [
-      "フック（1行）→ 問題提示 → 解決策（リスト）→ CTA",
-      "体験談型：信じてなかった → やってみた → 結果 → あなたも試して",
-      "リスト型：「〇〇する人の5つの共通点」形式"
+      "Hook (1 bold line) → Problem framing → Solution list (3-5 items with emojis) → Soft CTA",
+      "Story arc: Past struggle → turning point → result → 'you can do this too'",
+      "List post: '5 ChatGPT prompts I use every morning' format — high save rate",
+      "Confession + lesson: 'The mistake that cost me clients' — high comment rate"
     ],
     "themes": [
-      "AI × 副業収入（優先度1位・アフィリエイト親和性最高）",
-      "生産性 × 朝活（保存・シェア率が高い実用系）",
-      "ChatGPT具体的活用法（驚き・シェア狙い）",
-      "フリーランス収入UP（副業志望層への訴求）",
-      "時間管理・ライフハック（普遍的需要・ツール導線）",
-      "お金の基礎・投資入門（保存率高・金融アフィリエイト）",
-      "SNS発信戦略（Threads内ターゲット自身への訴求）"
+      "AI Tools That Make You Money (Priority 1 — highest engagement in English Threads market)",
+      "ChatGPT Prompts for Productivity (Priority 2 — high save rate, copy-paste value)",
+      "Morning Routine + Income Link (Priority 3 — evergreen, broad appeal)",
+      "Beginner Investing / Financial Freedom (Priority 4 — high save, finance affiliate potential)",
+      "Freelance Rate / Income Growth (Priority 5 — high comment rate from service providers)",
+      "Time Blocking / Deep Work (Priority 6 — broad professional audience)",
+      "Growing on Threads in 2026 (Priority 7 — meta content, community engagement)"
     ]
   },
   "improvement_directives": {
     "try_next": [
-      "各テーマで「問いかけ型」と「断言型」の2案を作成し反応を比較する",
-      "冒頭1行は必ず「読者の悩み or 強い主張 or 具体的な数字」で始める",
-      "投稿末尾に「〜してみて」「〜してほしい」などのソフトCTAを入れる",
-      "絵文字（✅ 🚫 →）を活用してリスト投稿の視認性を上げる",
-      "ハッシュタグは5〜7個に絞り、ジャンル×行動×属性で構成する"
+      "A/B test: Question-hook variant vs Statement-hook variant for same theme (track which gets more comments)",
+      "All posts: open with specific number, reader pain point, or bold claim in line 1",
+      "End every post with a soft CTA: 'save this', 'try this today', 'which one will you start with?'",
+      "Use emojis as list markers (✅ → 💡 🔥) to improve visual scannability",
+      "Keep hashtags to 5-7: combine topic + action + audience tags (e.g. #AItools #sidehustle #productivity)",
+      "Post in English only — no Japanese. Tone: peer-to-peer, conversational, not guru-like",
+      "Keep posts under 200 words for Threads optimization — tight, punchy, no filler"
     ],
     "avoid": [
-      "抽象的・説教的なトーン（「大事です」「意識しましょう」系）",
-      "冒頭1行が「今日は〇〇について話します」などの宣言から始まる構成",
-      "ハッシュタグを10個以上詰め込む過剰なタグ付け",
-      "政治・宗教・特定企業への批判を含む内容"
+      "Abstract or preachy tone ('It is important to...' 'You should always...')",
+      "Opening with 'Today I want to talk about...' or similar generic announcement",
+      "More than 7 hashtags — looks spammy to English-speaking audience",
+      "Content that could read as gatekeeping or elitist — keep tone accessible and empowering",
+      "Vague income claims without specifics — English audiences are skeptical of hype"
     ],
     "priority_patterns": [
-      "優先パターン①：具体的数字＋リスト形式（月X万、〇つの方法）",
-      "優先パターン②：体験談型（〜だと思ってなかった→やってみたら変わった）",
-      "優先パターン③：共感フック＋解決策（〜で悩んでいる人へ）"
+      "Priority Pattern A: Specific Number + List Format ('I made $X using these 5 methods') — drives saves and shares",
+      "Priority Pattern B: Story arc with concrete result ('A year ago I was broke, here is what changed') — drives comments and follows",
+      "Priority Pattern C: Empathy hook + actionable solution ('If you feel overwhelmed, try this') — drives saves and tags"
+    ]
+  },
+  "weekly_theme_selection": {
+    "week": "2026-W27",
+    "approved_themes": [
+      { "day": "Monday 2026-06-29", "theme": "AI Tools That Actually Make You Money", "hook_type": "specific_number" },
+      { "day": "Tuesday 2026-07-01", "theme": "5 ChatGPT Prompts That Save Hours Every Week", "hook_type": "list" },
+      { "day": "Wednesday 2026-07-02", "theme": "Morning Routine That Changed My Income", "hook_type": "story_arc" },
+      { "day": "Thursday 2026-07-03", "theme": "Beginner Investing: $200/Month Is Enough", "hook_type": "number_gap" },
+      { "day": "Friday 2026-07-04", "theme": "How to Double Your Freelance Rate", "hook_type": "bold_statement" },
+      { "day": "Saturday 2026-07-05", "theme": "Time Blocking: Do More in 4 Hours Than Most in 8", "hook_type": "curiosity_gap" },
+      { "day": "Sunday 2026-07-06", "theme": "How to Grow on Threads in 2026", "hook_type": "question" }
     ]
   },
   "status": "completed"
