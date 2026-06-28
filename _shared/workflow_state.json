@@ -25,5 +25,22 @@
     { "post_no": "No.006", "scheduled_for": "2026-07-02T12:00:00Z", "jst": "2026-07-02 21:00" },
     { "post_no": "No.007", "scheduled_for": "2026-07-02T22:00:00Z", "jst": "2026-07-03 07:00" }
   ],
-  "alerts": []
+  "alerts": [],
+  "policy_changes": [
+    {
+      "changed_at": "2026-06-27",
+      "type": "global_policy_update",
+      "description": "全部門方針変更：投稿言語を英語に統一し、リサーチ対象を英語圏市場（米国・英国・オーストラリア・カナダ等）に変更。全部門CLAUDE.mdに言語・対象市場の方針セクションを追加済み。",
+      "updated_files": [
+        "秘書/CLAUDE.md",
+        "リサーチ部門/CLAUDE.md",
+        "データ回収部門/CLAUDE.md",
+        "ライティング部門/CLAUDE.md（確認のみ・更新済み）",
+        "分析担当/CLAUDE.md",
+        "投稿実行部門/CLAUDE.md",
+        "監視、制御担当/CLAUDE.md"
+      ],
+      "instructed_by": "オーナー"
+    }
+  ]
 }
