@@ -118,9 +118,11 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "contentType": "form-urlencoded",
-        "bodyParameters": [
-          { "name": "creation_id", "value": "={{ $json.id }}" }
-        ]
+        "bodyParameters": {
+          "parameters": [
+            { "name": "creation_id", "value": "={{ $('Threadsコンテナ作成').first().json.id }}" }
+          ]
+        }
       },
       "credentials": {
         "httpHeaderAuth": { "id": "threads-cred", "name": "Threads Access Token" }
