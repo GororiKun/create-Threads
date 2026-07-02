@@ -12,7 +12,7 @@
       "scheduled_for": "2026-06-28T22:00:00Z",
       "scheduled_jst": "2026-06-29 07:00 JST",
       "status": "approved",
-      "approval_note": "Strong specific-number hook ($847). List format with checkmarks is scannable. Save CTA drives retention. No controversy risk. Variant B available as A/B option if engagement on A is low."
+      "approval_note": "Strong specific-number hook ($847). List format with checkmarks is scannable. Save CTA drives retention."
     },
     {
       "post_no": "No.002",
@@ -23,62 +23,62 @@
       "scheduled_for": "2026-06-30T12:00:00Z",
       "scheduled_jst": "2026-06-30 21:00 JST",
       "status": "approved",
-      "approval_note": "Copy-paste-ready prompts in single quotes drive high save rates. Numbered list with emojis is visually clean. Explicit 'save this' CTA at the end. High-value informational content for English-speaking professional audience."
+      "approval_note": "Copy-paste-ready prompts drive high save rates. Numbered list with emojis is visually clean."
     },
     {
       "post_no": "No.003",
       "theme": "Morning Routine That Changed My Income",
       "selected_version": "A",
-      "body": "A year ago I was hitting snooze until 8AM and feeling behind before the day even started.\n\nNow I am up at 5:30AM and I have earned more this year than my last 3 years combined.\n\nThe only routine that actually stuck:\n\n5:30AM → 10 min journal (what do I want to achieve today?)\n5:45AM → 30 min deep work on my highest-value task\n6:15AM → Exercise (20 min, no excuses)\n6:40AM → Review goals, check messages, plan the day\n\nThat is it. The first hour sets the tone for everything.\n\nWhat time do you wake up? Be honest.",
-      "hashtags": ["#morningroutine", "#productivity", "#5AMclub", "#earlymorning", "#habitbuilding", "#successmindset", "#routine"],
-      "scheduled_for": "2026-07-01T12:00:00Z",
-      "scheduled_jst": "2026-07-01 21:00 JST",
+      "body": "A year ago I was hitting snooze until 8AM, feeling behind all day.\n\nNow I am up at 5:30AM and earned more this year than my last 3 years combined.\n\nThe only routine that stuck:\n\n5:30AM → 10 min journal\n5:45AM → 30 min deep work\n6:15AM → 20 min exercise\n6:40AM → Review goals, plan the day\n\nThe first hour sets the tone for everything.\n\nWhat time do you wake up?",
+      "hashtags": ["#morningroutine", "#productivity", "#5AMclub", "#earlymorning", "#habitbuilding"],
+      "scheduled_for": "2026-07-02T03:00:00Z",
+      "scheduled_jst": "2026-07-02 12:00 JST",
       "status": "approved",
-      "approval_note": "Story arc with past-vs-now contrast drives emotional engagement. Income link ('earned more this year') elevates the productivity angle. Question CTA ('what time do you wake up?') reliably generates comments. Scheduled for evening when US audience is active."
+      "approval_note": "Story arc with past-vs-now contrast. Question CTA generates comments. Rescheduled from Jul 1 21:00 JST due to 500-char fix."
     },
     {
       "post_no": "No.004",
       "theme": "Beginner Investing: $200/Month Is Enough to Build Wealth",
       "selected_version": "A",
       "body": "$200 a month.\n\nThat is it.\n\nIf you start at 25 and invest $200 every month in an index fund at 8% average returns:\n\nAge 35 → $36,000\nAge 45 → $114,000\nAge 55 → $294,000\nAge 65 → $670,000\n\nYou did not need to be rich to start.\n\nYou just needed to start.\n\nThe best time to invest was yesterday. The second best time is today.\n\nSave this and share it with someone who thinks investing is only for wealthy people.",
-      "hashtags": ["#investing", "#personalfinance", "#indexfunds", "#financialfreedom", "#wealthbuilding", "#beginnerinvesting", "#money"],
-      "scheduled_for": "2026-07-01T22:00:00Z",
-      "scheduled_jst": "2026-07-02 07:00 JST",
+      "hashtags": ["#investing", "#personalfinance", "#indexfunds", "#financialfreedom", "#wealthbuilding"],
+      "scheduled_for": "2026-07-02T12:00:00Z",
+      "scheduled_jst": "2026-07-02 21:00 JST",
       "status": "approved",
-      "approval_note": "Visual number progression (age milestones) creates compelling compound interest narrative. Low-barrier framing ($200) removes intimidation. Strong share CTA. High save rate expected from 25-40 audience. Morning posting when financial mindset is fresh."
+      "approval_note": "Visual number progression creates compelling compound interest narrative. Rescheduled from Jul 2 07:00 JST due to 500-char fix."
     },
     {
       "post_no": "No.005",
       "theme": "How to Double Your Freelance Rate Without Losing Clients",
       "selected_version": "A",
-      "body": "You are probably undercharging.\n\nI know because I was too.\n\nI charged $30/hour for 2 years thinking that was fair. Then I raised my rate to $85/hour and landed better clients with better projects.\n\nWhat actually changed my rate:\n\n✅ Specialized in one industry instead of saying 'I do everything'\n✅ Led with outcomes ('I help you increase conversions') not tasks ('I do copywriting')\n✅ Stopped working with clients who asked for discounts\n✅ Raised my rate by 20% every 6 months without apologizing\n\nYour rate is a signal of your value.\n\nPrice accordingly.",
-      "hashtags": ["#freelance", "#freelancetips", "#raiseyourrates", "#freelancelife", "#makemoney", "#selfemployed", "#consultant"],
+      "body": "You are probably undercharging.\n\nI was too.\n\nI charged $30/hour for 2 years. Then raised to $85/hour and landed better clients.\n\nWhat changed my rate:\n\n✅ Specialized in one niche\n✅ Led with outcomes, not tasks\n✅ Stopped working with discount-seekers\n✅ Raised my rate 20% every 6 months\n\nYour rate is a signal of your value.\n\nPrice accordingly.",
+      "hashtags": ["#freelance", "#freelancetips", "#raiseyourrates", "#freelancelife", "#makemoney"],
       "scheduled_for": "2026-07-03T03:00:00Z",
       "scheduled_jst": "2026-07-03 12:00 JST",
       "status": "approved",
-      "approval_note": "Bold opener ('you are probably undercharging') immediately validates reader suspicion. Personal story adds credibility. List of concrete rate-raising tactics is actionable and saveable. Closing line ('your rate is a signal') is a strong, memorable soundbite."
+      "approval_note": "Bold opener validates reader suspicion. Personal story adds credibility. Actionable list is saveable."
     },
     {
       "post_no": "No.006",
       "theme": "Time Blocking: Do More in 4 Hours Than Most Do in 8",
       "selected_version": "A",
-      "body": "I do more in 4 focused hours than most people do in 8.\n\nNot because I am smarter. Because I use time blocks.\n\nHere is the system:\n\n🔵 Block 1 (9-11AM): Deep work only. Phone off. No Slack. One task.\n🟢 Block 2 (11AM-12PM): Admin, emails, quick tasks.\n🔴 Block 3 (1-3PM): Meetings, calls, collaboration.\n⚪ Block 4 (3-4PM): Review, plan tomorrow, wrap up.\n\nAfter 4PM I stop working.\n\nThe key: protect Block 1 like your livelihood depends on it. Because your output does.\n\nSave this and test it this week.",
-      "hashtags": ["#timemanagement", "#deepwork", "#productivity", "#timeblocking", "#focusmode", "#worklifebalance", "#worksmarter"],
+      "body": "I do more in 4 focused hours than most in 8.\n\nNot smarter. Just time blocks.\n\nThe system:\n\n🔵 9-11AM: Deep work. Phone off. No Slack.\n🟢 11AM-12PM: Admin, emails, quick tasks.\n🔴 1-3PM: Meetings, calls, collaboration.\n⚪ 3-4PM: Review, plan tomorrow.\n\nAfter 4PM I stop.\n\nProtect that first block like your income depends on it.\n\nSave this. Test it this week.",
+      "hashtags": ["#timemanagement", "#deepwork", "#productivity", "#timeblocking", "#focusmode"],
       "scheduled_for": "2026-07-04T12:00:00Z",
       "scheduled_jst": "2026-07-04 21:00 JST",
       "status": "approved",
-      "approval_note": "Bold claim ('4 hours vs 8') challenges conventional thinking. Colour-coded block system is visually distinctive and memorable. 'After 4PM I stop' is a powerful work-life balance statement. Saturday evening perfect for audience planning the next week."
+      "approval_note": "Bold claim challenges conventional thinking. Colour-coded block system is memorable."
     },
     {
       "post_no": "No.007",
       "theme": "How to Grow on Threads in 2026 (Honest Creator Breakdown)",
       "selected_version": "A",
-      "body": "How I actually grew on Threads (honest breakdown):\n\nWhat did NOT work:\n❌ Posting every day without a strategy\n❌ Generic motivational quotes\n❌ Copy-pasting content from other platforms\n\nWhat DID work:\n✅ Writing posts that solved a specific problem for a specific person\n✅ Ending every post with a question to spark comments\n✅ Showing up consistently (4-5x per week, not 7)\n✅ Engaging genuinely on others' posts for 15 min a day\n✅ One clear niche: what I help people with\n\nThreads rewards real conversations, not broadcast-style content.\n\nWhat is your biggest challenge on Threads right now?",
-      "hashtags": ["#Threads", "#contentcreator", "#growyouraudience", "#socialmediatips", "#creatoreconomy", "#contentmarketing"],
+      "body": "How I grew on Threads (honest breakdown):\n\nWhat did NOT work:\n❌ Posting without strategy\n❌ Generic motivational quotes\n❌ Copy-pasting from other platforms\n\nWhat DID work:\n✅ Posts that solved specific problems\n✅ Every post ends with a question\n✅ 4-5x per week (not 7)\n✅ 15 min a day genuinely engaging others\n✅ One clear niche\n\nThreads rewards real conversations.\n\nWhat is your biggest challenge on Threads?",
+      "hashtags": ["#Threads", "#contentcreator", "#growyouraudience", "#socialmediatips", "#creatoreconomy"],
       "scheduled_for": "2026-07-04T22:00:00Z",
       "scheduled_jst": "2026-07-05 07:00 JST",
       "status": "approved",
-      "approval_note": "Meta content directly targeting Threads users. What-worked vs what-did-not format is honest and builds trust. Closing question drives community engagement. Sunday morning timing aligns with creators reviewing their strategy for the week."
+      "approval_note": "Meta content targeting Threads users. What-worked vs what-did-not builds trust. Closing question drives engagement."
     }
   ],
   "status": "approved"
